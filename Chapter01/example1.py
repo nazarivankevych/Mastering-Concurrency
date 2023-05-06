@@ -23,7 +23,7 @@ def is_prime(x):
     return x
 
 
-input = [i for i in range(10 ** 13, 10 ** 13 + 500)]
+input = [i for i in range(10**13, 10**13 + 500)]
 
 
 # sequential
@@ -33,8 +33,8 @@ result = []
 for i in input:
     if is_prime(i):
         result.append(i)
-print('Result 1:', result)
-print('Took: %.2f seconds.' % (timer() - start))
+print("Result 1:", result)
+print("Took: %.2f seconds." % (timer() - start))
 
 
 # concurrent
@@ -48,5 +48,5 @@ with concurrent.futures.ProcessPoolExecutor(max_workers=20) as executor:
         if future.result():
             result.append(future.result())
 
-print('Result 2:', result)
-print('Took: %.2f seconds.' % (timer() - start))
+print("Result 2:", result)
+print("Took: %.2f seconds." % (timer() - start))

@@ -1,11 +1,15 @@
 # ch17/example1.py
 
-import sys; sys.setswitchinterval(.000001)
+import sys
+
+sys.setswitchinterval(0.000001)
 import threading
+
 
 def foo():
     global n
     n += 1
+
 
 n = 0
 
@@ -20,6 +24,6 @@ for thread in threads:
 for thread in threads:
     thread.join()
 
-print(f'Final value: {n}.')
+print(f"Final value: {n}.")
 
-print('Finished.')
+print("Finished.")

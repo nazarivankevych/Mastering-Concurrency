@@ -4,7 +4,6 @@ import multiprocessing
 
 
 class ReductionConsumer(multiprocessing.Process):
-
     def __init__(self, task_queue, result_queue):
         multiprocessing.Process.__init__(self)
         self.task_queue = task_queue
@@ -12,24 +11,24 @@ class ReductionConsumer(multiprocessing.Process):
 
     def run(self):
         pname = self.name
-        print('Using process %s...' % pname)
+        print("Using process %s..." % pname)
 
         while True:
             num1 = self.task_queue.get()
             if num1 is None:
-                print('Exiting process %s.' % pname)
+                print("Exiting process %s." % pname)
                 self.task_queue.task_done()
                 break
 
             self.task_queue.task_done()
             num2 = self.task_queue.get()
             if num2 is None:
-                print('Reaching the end with process %s and number %i.' % (pname, num1))
+                print("Reaching the end with process %s and number %i." % (pname, num1))
                 self.task_queue.task_done()
                 self.result_queue.put(num1)
                 break
 
-            print('Running process %s on numbers %i and %i.' % (pname, num1, num2))
+            print("Running process %s on numbers %i and %i." % (pname, num1, num2))
             self.task_queue.task_done()
             self.result_queue.put(num1 + num2)
 
@@ -57,7 +56,7 @@ def reduce_sum(array):
 
         tasks.join()
         result_size = result_size // 2 + (result_size % 2)
-        #print('-' * 40)
+        # print('-' * 40)
 
     return results.get()
 
@@ -65,4 +64,4 @@ def reduce_sum(array):
 my_array = [i for i in range(20)]
 
 result = reduce_sum(my_array)
-print('Final result: %i.' % result)
+print("Final result: %i." % result)

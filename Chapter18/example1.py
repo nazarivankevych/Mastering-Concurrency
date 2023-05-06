@@ -2,12 +2,13 @@
 
 import socket
 
+
 # Main event loop
 def reactor(host, port):
     sock = socket.socket()
     sock.bind((host, port))
     sock.listen(5)
-    print(f'Server up, running, and waiting for call on {host} {port}')
+    print(f"Server up, running, and waiting for call on {host} {port}")
 
     try:
         while True:
@@ -17,26 +18,28 @@ def reactor(host, port):
     finally:
         sock.close()
 
+
 def process_request(conn, cli_address):
     file = conn.makefile()
 
-    print(f'Received connection from {cli_address}')
+    print(f"Received connection from {cli_address}")
 
     try:
         while True:
             line = file.readline()
             if line:
                 line = line.rstrip()
-                if line == 'quit':
-                    conn.sendall(b'connection closed\r\n')
+                if line == "quit":
+                    conn.sendall(b"connection closed\r\n")
                     return
 
-                print(f'{cli_address} --> {line}')
-                conn.sendall(b'Echoed: %a\r\n' % line)
+                print(f"{cli_address} --> {line}")
+                conn.sendall(b"Echoed: %a\r\n" % line)
     finally:
-        print(f'{cli_address} quit')
+        print(f"{cli_address} quit")
         file.close()
         conn.close()
 
-if __name__ == '__main__':
-    reactor('localhost', 8080)
+
+if __name__ == "__main__":
+    reactor("localhost", 8080)

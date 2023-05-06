@@ -1,11 +1,15 @@
 # ch17/example2.py
 
-import sys; sys.setswitchinterval(.000001)
+import sys
+
+sys.setswitchinterval(0.000001)
 import threading
+
 
 def foo():
     global my_list
     my_list.append(1)
+
 
 my_list = []
 
@@ -20,6 +24,6 @@ for thread in threads:
 for thread in threads:
     thread.join()
 
-print(f'Final list length: {len(my_list)}.')
+print(f"Final list length: {len(my_list)}.")
 
-print('Finished.')
+print("Finished.")

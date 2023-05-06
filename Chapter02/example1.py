@@ -27,13 +27,12 @@ def is_prime(x):
 
 
 def concurrent_solve(n_workers):
-    print('Number of workers: %i.' % n_workers)
+    print("Number of workers: %i." % n_workers)
 
     start = timer()
     result = []
 
     with concurrent.futures.ProcessPoolExecutor(max_workers=n_workers) as executor:
-
         futures = [executor.submit(is_prime, i) for i in input]
         completed_futures = concurrent.futures.as_completed(futures)
 
@@ -46,13 +45,13 @@ def concurrent_solve(n_workers):
         sub_duration = timer() - sub_start
 
     duration = timer() - start
-    print('Sub took: %.4f seconds.' % sub_duration)
-    print('Took: %.4f seconds.' % duration)
+    print("Sub took: %.4f seconds." % sub_duration)
+    print("Took: %.4f seconds." % duration)
 
 
-input = [i for i in range(10 ** 13, 10 ** 13 + 1000)]
+input = [i for i in range(10**13, 10**13 + 1000)]
 
 
 for n_workers in range(1, multiprocessing.cpu_count() + 1):
     concurrent_solve(n_workers)
-    print('_' * 20)
+    print("_" * 20)

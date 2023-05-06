@@ -5,6 +5,7 @@ from concurrent.futures import ThreadPoolExecutor
 import time
 import matplotlib.pyplot as plt
 
+
 class LockedCounter:
     def __init__(self):
         self.value = 0
@@ -13,7 +14,7 @@ class LockedCounter:
     def increment(self, x):
         with self.lock:
             new_value = self.value + x
-            time.sleep(0.001) # creating a delay
+            time.sleep(0.001)  # creating a delay
             self.value = new_value
 
     def get_value(self):
@@ -21,6 +22,7 @@ class LockedCounter:
             value = self.value
 
         return value
+
 
 class ApproximateCounter:
     def __init__(self, global_counter):
@@ -32,7 +34,7 @@ class ApproximateCounter:
     def increment(self, x):
         with self.lock:
             new_value = self.value + x
-            time.sleep(0.001) # creating a delay
+            time.sleep(0.001)  # creating a delay
             self.value = new_value
 
             if self.value >= self.threshold:
@@ -44,6 +46,7 @@ class ApproximateCounter:
             value = self.value
 
         return value
+
 
 ###########################################################################
 # Previous single-lock counter
@@ -65,8 +68,10 @@ for n_workers in range(1, 11):
 ###########################################################################
 # New approximate counters
 
+
 def thread_increment(counter):
     counter.increment(1)
+
 
 approx_counter_n_threads = []
 approx_counter_times = []
@@ -84,25 +89,20 @@ for n_workers in range(1, 11):
 
     approx_counter_times.append(time.time() - start)
 
-    print(f'Number of threads: {n_workers}')
-    print(f'Final counter: {global_counter.get_value()}.')
-    print('-' * 40)
+    print(f"Number of threads: {n_workers}")
+    print(f"Final counter: {global_counter.get_value()}.")
+    print("-" * 40)
 
 ###########################################################################
 # Plotting
 
-single_counter_line, = plt.plot(
-    single_counter_n_threads,
-    single_counter_times,
-    c = 'blue',
-    label = 'Single counter'
+(single_counter_line,) = plt.plot(
+    single_counter_n_threads, single_counter_times, c="blue", label="Single counter"
 )
-approx_counter_line, = plt.plot(
-    approx_counter_n_threads,
-    approx_counter_times,
-    c = 'red',
-    label = 'Approximate counter'
+(approx_counter_line,) = plt.plot(
+    approx_counter_n_threads, approx_counter_times, c="red", label="Approximate counter"
 )
 plt.legend(handles=[single_counter_line, approx_counter_line], loc=2)
-plt.xlabel('Number of threads'); plt.ylabel('Time in seconds')
+plt.xlabel("Number of threads")
+plt.ylabel("Time in seconds")
 plt.show()

@@ -11,9 +11,10 @@ class MyThread(threading.Thread):
         self.name = name
 
     def run(self):
-        print('Starting thread %s.' % self.name)
+        print("Starting thread %s." % self.name)
         process_queue()
-        print('Exiting thread %s.' % self.name)
+        print("Exiting thread %s." % self.name)
+
 
 def process_queue():
     while True:
@@ -26,12 +27,13 @@ def process_queue():
 
         time.sleep(1)
 
+
 def print_factors(x):
-    result_string = 'Positive factors of %i are: ' % x
+    result_string = "Positive factors of %i are: " % x
     for i in range(1, x + 1):
         if x % i == 0:
-            result_string += str(i) + ' '
-    result_string += '\n' + '_' * 20
+            result_string += str(i) + " "
+    result_string += "\n" + "_" * 20
 
     print(result_string)
 
@@ -46,9 +48,9 @@ for x in input_:
 
 
 # initializing and starting 3 threads
-thread1 = MyThread('A')
-thread2 = MyThread('B')
-thread3 = MyThread('C')
+thread1 = MyThread("A")
+thread2 = MyThread("B")
+thread3 = MyThread("C")
 
 thread1.start()
 thread2.start()
@@ -59,4 +61,4 @@ thread1.join()
 thread2.join()
 thread3.join()
 
-print('Done.')
+print("Done.")

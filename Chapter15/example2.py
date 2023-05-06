@@ -5,17 +5,19 @@ import threading
 
 COUNT = 50000000
 
+
 def countdown(n):
     while n > 0:
         n -= 1
+
 
 ###########################################################################
 
 start = time.time()
 countdown(COUNT)
 
-print('Sequential program finished.')
-print(f'Took {time.time() - start : .2f} seconds.')
+print("Sequential program finished.")
+print(f"Took {time.time() - start : .2f} seconds.")
 
 ###########################################################################
 
@@ -28,5 +30,5 @@ thread2.start()
 thread1.join()
 thread2.join()
 
-print('Concurrent program finished.')
-print(f'Took {time.time() - start : .2f} seconds.')
+print("Concurrent program finished.")
+print(f"Took {time.time() - start : .2f} seconds.")

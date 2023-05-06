@@ -4,17 +4,18 @@ from copy import deepcopy
 import time
 from random import choice
 
+
 class Network:
     def __init__(self, primary_key, primary_value):
         self.primary_key = primary_key
         self.data = {primary_key: primary_value}
 
     def __str__(self):
-        result = '{\n'
+        result = "{\n"
         for key in self.data:
-            result += f'\t{key}: {self.data[key]};\n'
+            result += f"\t{key}: {self.data[key]};\n"
 
-        return result + '}'
+        return result + "}"
 
     def add_node(self, key, value):
         if key not in self.data:
@@ -32,5 +33,5 @@ class Network:
         copy_network = deepcopy(self)
 
         primary_key = copy_network.primary_key
-        time.sleep(1) # creating a delay
+        time.sleep(1)  # creating a delay
         return copy_network.data[primary_key]

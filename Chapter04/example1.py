@@ -5,15 +5,15 @@ files = []
 
 # method 1
 for i in range(n_files):
-    files.append(open('output1/sample%i.txt' % i, 'w'))
+    files.append(open("output1/sample%i.txt" % i, "w"))
 
 # method 2
-'''for i in range(n_files):
+"""for i in range(n_files):
     f = open('output1/sample%i.txt' % i, 'w')
     files.append(f)
-    f.close()'''
+    f.close()"""
 
 # method 3
-'''for i in range(n_files):
+"""for i in range(n_files):
     with open('output1/sample%i.txt' % i, 'w') as f:
-        files.append(f)'''
+        files.append(f)"""

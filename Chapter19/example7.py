@@ -3,6 +3,7 @@
 import unittest
 from concurrencytest import ConcurrentTestSuite, fork_for_tests
 
+
 def fib(i):
     if i in [0, 1]:
         return i
@@ -15,10 +16,11 @@ def fib(i):
 
     return b
 
+
 class FibTest(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         super(FibTest, self).__init__(*args, **kwargs)
-        self.mod = 10 ** 10
+        self.mod = 10**10
 
     def test_start_values(self):
         self.assertEqual(fib(0), 0)
@@ -33,7 +35,8 @@ class FibTest(unittest.TestCase):
     def test_big_value_v3(self):
         self.assertEqual(fib(500000) % self.mod, 9780453125)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     runner = unittest.TextTestRunner()
 
     # multiprocessing testing
